@@ -1,5 +1,4 @@
 # loggepy
-password generator and store
 English:
 this Project is my first app, this project aims to be able to generate passwords that are very difficult to crack, moreover it can save the passwords to give it back to you and you will no longer be able to copy it.
 the file containing the passwords is encrypted
