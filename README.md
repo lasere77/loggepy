@@ -1,6 +1,6 @@
 # loggepy
 English:
-this Project is my first app, this project aims to be able to generate passwords that are very difficult to crack, moreover it can save the passwords to give it back to you and you will no longer be able to copy it.
+this Project is my first app, this project aims to be able to generate passwords that are very difficult to crack, moreover it can save the passwords to give it back to you and you will no longer be able to pasted it.
 the file containing the passwords is encrypted
 
 ----Warning----
@@ -12,7 +12,7 @@ the ceron updates have to be done manually for the moment you will have to re-do
 
 
 Français:
-ce projet est ma première application, ce project a pour but de pouvoir générer des mots de passe très difficile a cracker de plus il pourras enregistré le mots de passe pour vous le rendre et vous naurrez plus cas le copier .
+ce projet est ma première application, ce project a pour but de pouvoir générer des mots de passe très difficile a cracker de plus il pourras enregistré le mots de passe pour vous le rendre et vous naurrez plus cas le collé .
 le fichier contenent les mots de passe est chiffré 
 
 ----attention----
