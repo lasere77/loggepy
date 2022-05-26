@@ -1,5 +1,8 @@
 import io
 import os
+import ctypes
+import locale
+import json
 
 import keyboard
 import requests
@@ -8,11 +11,29 @@ from bs4 import BeautifulSoup
 
 from relaunch import restart
 
-get_name = os.getlogin()
+with open(f"Script/data/data.json", "r") as file:
+    data = json.load(file)
 
-IMPORTANT = 0
-MAJOR = 1
-MINOR = 7
+IMPORTANT = int(data["IMPORTANT"])
+MAJOR = int(data["MAJOR"])
+MINOR = int(data["MINOR"])
+
+windll = ctypes.windll.kernel32
+windll.GetUserDefaultUILanguage()
+lang = locale.windows_locale[ windll.GetUserDefaultUILanguage() ]
+
+try:
+    with open(f"Script/LANG/{lang}.json", "r") as f:
+        data = json.load(f)
+    data_texte = data["text"]
+    data_text = data_texte["update"]
+except:
+    with open(f"Script/LANG/en_US.json", "r") as f:
+        data = json.load(f)
+    data_texte = data["text"]
+    data_text = data_texte["update"]
+
+get_name = os.getlogin()
 
 point = "."
 URL = "https://github.com/lasere77/loggepy/releases"
@@ -20,7 +41,7 @@ URL = "https://github.com/lasere77/loggepy/releases"
 
 def get_update():
     reponse = requests.get(URL)
-    print("we are looking if there is an update available, thank you for your attention")
+    print(data_text['looking'])
     if reponse.ok:
         soup = BeautifulSoup(reponse.text, 'html.parser')
         tag = soup.find(name="h1")
@@ -33,7 +54,7 @@ def get_update():
         file_zip_url = f"https://github.com/lasere77/loggepy/releases/download/{get_important}{point}{get_major}{point}{get_minor}/loggepy.{get_important}{point}{get_major}{point}{get_minor}.zip"
 
         if get_important > IMPORTANT or get_major > MAJOR or get_minor > MINOR:
-            print(f"a new update is available.\nYou are currently on the loggepy version{IMPORTANT}{point}{MAJOR}{point}{MINOR}, and the new version is the {get_important}{point}{get_major}{point}{get_minor}\ndo you want to do this update?(yes/no)")
+            print(f"{data_text['new']}\n{data_text['current_version']} {IMPORTANT}{point}{MAJOR}{point}{MINOR} {data_text['new_version']} {get_important}{point}{get_major}{point}{get_minor}\n{data_text['choose']}")
             while True:
                 if keyboard.is_pressed("y"):
                     # télécharger la nouvelle vertion de loggepy grace a une requet html + la désipé
@@ -43,10 +64,10 @@ def get_update():
                     #executer l'asssembleur
                     os.chdir(f'C:/Users/{get_name}/AppData/Roaming/loggepy')
                     os.system('update.bat')
-                    print("la mise a jour a été faite")
+                    print(data_text['ready_update'])
                     restart()
                 if keyboard.is_pressed("n"):
-                    print("la mise a jour n'a pas été faite")
+                    print(data_text['no_update'])
                     restart()
         elif get_important == IMPORTANT or get_major == MAJOR or get_minor == MINOR:
-            print("you already have the latest version of loggepy")
+            print(data_text['last_version'])

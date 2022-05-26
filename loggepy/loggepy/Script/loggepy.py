@@ -3,6 +3,10 @@ import logging
 import string
 import shutil
 import os
+import ctypes
+import locale
+import json
+
 
 from pyfade import Colors, Fade
 import keyboard
@@ -10,12 +14,16 @@ import time
 
 from getpasseword import get_passeword, get_all_passeword, copy
 from addpassword import add_password
-from relaunch import restart, error
+from relaunch import restart
 from repaired import repair
 from delpassewod import del_passeword
 from update import get_update
 
 logging.basicConfig(filename="log/loggepy_log.log", level=logging.DEBUG)
+
+with open(f"Script/data/data.json", "r") as file:
+    data = json.load(file)
+
 thank = """
 ████████╗██╗░░██╗░█████╗░███╗░░██╗██╗░░██╗  ██╗░░░██╗░█████╗░██╗░░░██╗  ███████╗░█████╗░██████╗░
 ╚══██╔══╝██║░░██║██╔══██╗████╗░██║██║░██╔╝  ╚██╗░██╔╝██╔══██╗██║░░░██║  ██╔════╝██╔══██╗██╔══██╗
@@ -31,36 +39,57 @@ thank = """
 ╚██████╔╝██████╔╝██║██║░╚███║╚██████╔╝  ███████╗╚█████╔╝╚██████╔╝╚██████╔╝███████╗██║░░░░░░░░██║░░░
 ░╚═════╝░╚═════╝░╚═╝╚═╝░░╚══╝░╚═════╝░  ╚══════╝░╚════╝░░╚═════╝░░╚═════╝░╚══════╝╚═╝░░░░░░░░╚═╝░░░
 """
-title = """
-██╗░░░░░░█████╗░░██████╗░░██████╗░███████╗██████╗░██╗░░░██╗ V 0.1.7
-██║░░░░░██╔══██╗██╔════╝░██╔════╝░██╔════╝██╔══██╗╚██╗░██╔╝ by lasere
+title = f"""
+██╗░░░░░░█████╗░░██████╗░░██████╗░███████╗██████╗░██╗░░░██╗ {data["version"]}
+██║░░░░░██╔══██╗██╔════╝░██╔════╝░██╔════╝██╔══██╗╚██╗░██╔╝ by {data["author"]}
 ██║░░░░░██║░░██║██║░░██╗░██║░░██╗░█████╗░░██████╔╝░╚████╔╝░
 ██║░░░░░██║░░██║██║░░╚██╗██║░░╚██╗██╔══╝░░██╔═══╝░░░╚██╔╝░░
 ███████╗╚█████╔╝╚██████╔╝╚██████╔╝███████╗██║░░░░░░░░██║░░░
 ╚══════╝░╚════╝░░╚═════╝░░╚═════╝░╚══════╝╚═╝░░░░░░░░╚═╝░░░ 
 """
 
+windll = ctypes.windll.kernel32
+windll.GetUserDefaultUILanguage()
+lang = locale.windows_locale[ windll.GetUserDefaultUILanguage() ]
+
+try:
+    with open(f"Script/LANG/{lang}.json", "r") as f:
+        data = json.load(f)
+    data_litel = data["litel"]
+    data_big = data["big"]
+    data_texte = data["text"]
+    data_text = data_texte["loggepy"]
+except:
+    with open(f"Script/LANG/en_US.json", "r") as f:
+        data = json.load(f)
+    data_litel = data["litel"]
+    data_big = data["big"]
+    data_texte = data["text"]
+    data_text = data_texte["loggepy"]
+
 print(Fade.Vertical(Colors.blue_to_green, title))
 hm = list(string.ascii_lowercase + "\"" + "@" + "<")
 HM = list(string.ascii_uppercase + "/" + "*" + ">" + "~")
 file = open("C:\ProgramData\passworld_loggepy\passewords", "a+")
-print(f'to generate a password press "w" \nto read a password press "r" \nto create a password press "a" \nto exit plesse press "e" \nto see all your passwords press "p" \nto copy your word press "c" \nif your ./passewords file is corrupted colled this function with "b" \nto delete a password press "d" \nto see more details press "i" \nto update loggepy press "u"')
+print(f'{data_litel["generate"]}\n{data_litel["read"]}\n{data_litel["creata"]}\n{data_litel["exit"]}\n{data_litel["see"]}\n{data_litel["copy"]}\n{data_litel["backup"]} \n{data_litel["delete"]}\n{data_litel["info"]} \n{data_litel["update"]}')
 
 
 def passeword_generet():
     logging.info("INFO: the user called the function \"passeword_generet\"")
-    name_passewod = input("name of new passeword : ")
-    if " " in name_passewod:
-        print(
-            "ha I'm sorry but this password name is not validated it may crash the program (please do not put a space)...")
+    print(data_text["escape"])
+    name_passewod = input(data_text['name_passewod'])
+    if name_passewod == "escape":
+        restart()
+    if " " in name_passewod or "=" in name_passewod:
+        print(data_text['no_space'])
         time.sleep(2.5)
-        error()
+        restart()
     file.write(name_passewod + "=")
     for i in range(12):
         passeword = (hm[random.randint(0, len(hm) - 1)] + HM[random.randint(0, len(hm) - 1)])
         file.write(str(passeword))
     file.write("\n")
-    print("your passwords has been registered under the name of : ", name_passewod)
+    print(data_text['register'], name_passewod)
     file.close()
     logging.info("INFO: the \"backup\" function was called")
     src = r"C:\ProgramData\passworld_loggepy\passewords"
@@ -72,20 +101,17 @@ def passeword_generet():
 while True:
     if keyboard.is_pressed("w"):
         logging.info("INFO: user to press \"w\"")
-        logging.info(
-            "INFO: the user called the function \"passeword_generet\" in this path \"C:\Program Files (x86)\loggepy\Script/loggepy.py\" ")
+        logging.info("INFO: the user called the function \"passeword_generet\" in this path \"C:\Program Files (x86)\loggepy\Script/loggepy.py\" ")
         passeword_generet()
 
     if keyboard.is_pressed("r"):
         logging.info("INFO: user to press \"r\"")
-        logging.info(
-            "INFO: the user called the function \"get_passeword\" in this path \"C:\Program Files (x86)\loggepy\Script/getpasseword.py\" ")
+        logging.info("INFO: the user called the function \"get_passeword\" in this path \"C:\Program Files (x86)\loggepy\Script/getpasseword.py\" ")
         get_passeword()
 
     if keyboard.is_pressed("a"):
         logging.info("INFO: user to press \"a\"")
-        logging.info(
-            "INFO: the user called the function \"add_password\" in this path \"C:\Program Files (x86)\loggepy\Script/addpassword.py\" ")
+        logging.info("INFO: the user called the function \"add_password\" in this path \"C:\Program Files (x86)\loggepy\Script/addpassword.py\" ")
         add_password()
 
     if keyboard.is_pressed("e"):
@@ -96,28 +122,25 @@ while True:
 
     if keyboard.is_pressed("p"):
         logging.info("INFO: user to press \"p\"")
-        logging.info(
-            "INFO: the user called the function \"all_passeword\" in this path \"C:\Program Files (x86)\loggepy\Script/getpasseword.py\" ")
+        logging.info("INFO: the user called the function \"all_passeword\" in this path \"C:\Program Files (x86)\loggepy\Script/getpasseword.py\" ")
         get_all_passeword()
         time.sleep(1.5)
 
     if keyboard.is_pressed("c"):
         logging.info("INFO: user to press \"c\"")
-        logging.info(
-            "INFO: the user called the function \"copy\" in this path \"C:\Program Files (x86)\loggepy\Script/getpasseword.py\" ")
+        logging.info("INFO: the user called the function \"copy\" in this path \"C:\Program Files (x86)\loggepy\Script/getpasseword.py\" ")
         copy()
 
     if keyboard.is_pressed("b"):
         logging.info("INFO: user to press \"b\"")
-        logging.info(
-            "INFO: the user called the function \"repair\" in this path \"C:\Program Files (x86)\loggepy\Script/repaired.py\" ")
+        logging.info("INFO: the user called the function \"repair\" in this path \"C:\Program Files (x86)\loggepy\Script/repaired.py\" ")
         repair()
         time.sleep(1.5)
 
     if keyboard.is_pressed("i"):
         logging.info("INFO: user to press \"i\"")
         logging.info("INFO: user requested more info ")
-        print(f'\nto generate a password press "w",loggepy will generate an unbreakable password for you, you just gave your password a name to find it later, be careful not to put spaces !!!!! \nto read a password press "r, to read one of your passwords, just press "r" and enter the name of your password, el loggepy will give it to you. be careful not to put spaces !!!!! \nto create a password press "a",this function will allow you to save a password in loggepy (you will therefore have to specify to loggepy the name of the password and the password in luis itself) \nto exit plesse press "e" , this function just left loggepy correctly it is advisable to close it in this way and not with the cross of the window \nto see all your passwords press "p", this function is to see all of these passwords \nto copy your word press "c" , if you press "c" you will no longer be able to enter the name of your password and it will automatically be put in your clipboard and you can paste it with the shortcut "clrt + v"\nif your ./passewords file is corrupted and you have corrected it, call this function (be careful, this will delete your current file to put the file "C:/Users/{os.getlogin()}/AppData/Roaming/loggepy_backup_passeword/passewords_back" \nto delete a password press "d", this function will delete a password contained in "C:\ProgramData\passworld_loggepy\passewords" you will be asked to put the line where the password is located and it will be deleted \nloggepy will look on github if there is a new update and if it is it will download the latest update and replace the old files with the new ones, it is important to specify that this will not delete any word of passes.')
+        print(f'\n{data_big["b_generate"]}\n{data_big["b_read"]}\n{data_big["b_creata"]}\n{data_big["b_exit"]}\n{data_big["b_see"]}\n{data_big["b_copy"]}\n{data_big["b_backup"]} \n{data_big["b_delete"]}\n{data_big["b_update"]}')
         time.sleep(2.5)
 
     if keyboard.is_pressed("d"):

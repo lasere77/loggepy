@@ -1,4 +1,7 @@
 import logging
+import ctypes
+import locale
+import json
 
 from dotenv import load_dotenv
 import os
@@ -8,23 +11,42 @@ import time
 from relaunch import restart
 
 
+windll = ctypes.windll.kernel32
+windll.GetUserDefaultUILanguage()
+lang = locale.windows_locale[ windll.GetUserDefaultUILanguage() ]
+
+try:
+    with open(f"Script/LANG/{lang}.json", "r") as f:
+        data = json.load(f)
+    data_texte = data["text"]
+    data_text = data_texte["addpassword"]
+except:
+    with open(f"Script/LANG/en_US.json", "r") as f:
+        data = json.load(f)
+    data_texte = data["text"]
+    data_text = data_texte["addpassword"]
+
+
 def add_password():
     logging.info('INFO: the user called the function "add_passeword"')
-    choose_name = input("please enter the name of your password : ")
-    choose_addPassword = input(f"please put the password whose name is {choose_name} : ")
+    choose_name = input(data_text['choose_name'])
+    print(data_text["escape"])
+    choose_addPassword = input(f"{data_text['choose_addpassword']} {choose_name} : ")
     load_dotenv(dotenv_path="C:\ProgramData\passworld_loggepy/passewords")
     file = open("C:\ProgramData\passworld_loggepy\passewords", "a+")
-    if " " in choose_name:
-        print("ha I'm sorry but this password name is not validated it may crash the program (please do not put a space)...")
+    if choose_name == "escape":
+        restart()
+    if " " in choose_name or "=" in choose_name:
+        print(data_text["no_space"])
         time.sleep(2.5)
         restart()
     if choose_name == "":
-        print("ha I'm sorry but this password name is not validated it may crash the program (Please put arguments )...")
+        print(data_text["put_arg"])
         time.sleep(2.5)
         restart()
     file.write(choose_name + "=" + choose_addPassword)
     file.write("\n")
-    print(f"your password has been saved as {choose_name} with as password {choose_addPassword}")
+    print(f"{data_text['saved_passeword']} {choose_name} {data_text['saved_passeword2']} {choose_addPassword} .")
     file.close()
     logging.info("INFO: the \"backup\" function was called")
     src = r"C:\ProgramData\passworld_loggepy\passewords"
