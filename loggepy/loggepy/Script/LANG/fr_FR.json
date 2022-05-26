@@ -1,0 +1,76 @@
+{
+ "litel": {
+  "generate": "pour generer un mot de passe appuyez sur \"w\"",
+  "read": "pour lire un mot de passe appuyez sur \"r\"",
+  "creata": "pour creer un mot de passe appuyez sur \"a\"",
+  "exit": "pour quitter, appuyez sur \"e\"",
+  "see": "pour voir tous vos mots de passe appuyez sur \"p\"",
+  "copy": "pour copier votre mot appuyez sur \"c\"",
+  "backup": "si votre fichier ./passewords est corrompu, collez cette fonction avec \"b\"",
+  "delete": "pour supprimer un mot de passe appuyez sur \"d\"",
+  "info": "pour voir plus de details appuyez sur \"i\"",
+  "update": "pour mettre a jour loggepy appuyez sur \"u\""
+ },
+ "big":{
+    "b_generate": "pour generer un mot de passe appuyez sur \"w\",loggepy vous generera un mot de passe incassable, vous avez juste donne un nom a votre mot de passe pour le retrouver plus tard, attention a ne pas mettre d espaces !!!!!",
+    "b_read": "pour lire un mot de passe appuyez sur \"r\", pour lire un de vos mots de passe, appuyez simplement sur \"r\" et entrez le nom de votre mot de passe, et loggepy vous le donnera. attention a ne pas mettre d espaces !!!!!",
+    "b_creata": "pour creer un mot de passe appuyez sur \"a\", cette fonction vous permettra d enregistrer un mot de passe dans loggepy (il faudra donc preciser à loggepy le nom du mot de passe et le mot de passe dans luis lui-meme)",
+    "b_exit": "pour sortir merci appuyez sur \"e\" , cette fonction permet de quitter loggepy correctement il est conseille de la fermer de cette maniere et non avec la croix de la fenetre",
+    "b_see": "pour voir tous vos mots de passe appuyez sur \"p\", cette fonction permet de voir tous ces mots de passe",
+    "b_copy": "pour copier votre mot appuyez sur \"c\" , si vous appuyez sur \"c\" vous ne pourrez plus entrer le nom de votre mot de passe et il sera automatiquement mis dans votre presse-papier et vous pourrez le coller avec le raccourci \"clrt + v\"",
+    "b_backup": "si votre fichier ./passewords est corrompu et que vous voulez le corrige, appelez cette fonction (attention, cela supprimera votre fichier actuel pour mettre le fichier \"C:/Users/USERNAME/AppData/Roaming/loggepy_backup_passeword /passewords_back\"",
+    "b_delete": "pour supprimer un mot de passe appuyez sur \"d\", cette fonction supprimera un mot de passe contenu dans \"C:\\ProgramData\\passworld_loggepy\\passewords\" il vous sera demande de mettre la ligne ou se trouve le mot de passe et il sera supprime",
+    "b_update": "pour mettre a jour loggepy appuyez sur \"u\"loggepy regardera sur github s il y a une nouvelle mise a jour et si c est le cas il telechargera la derniere mise a jour et remplacera les anciens fichiers par les nouveaux, il est important de preciser que cela ne supprimera aucun mot de passes. veuillez noter que vous aurez besoin d une connexion internet"
+  },
+  "text": {
+    ":": ":",
+    "addpassword": {
+      "choose_name": "veuillez entrer le nom de votre mot de passe : ",
+      "choose_addpassword": "merci de mettre le mot de passe dont le nom est",
+      "no_space": "ah je suis desole mais ce nom de mot de passe n est pas valide il peut faire planter le programme (merci de ne pas mettre d'espace ni de signe \"=\")...",
+      "put_arg": "ha je suis desole mais ce nom de mot de passe n est pas valide il peut faire planter le programme (veuillez mettre des arguments)...",
+      "saved_passeword": "votre mot de passe a ete enregistre sous",
+      "saved_passeword2": "avec comme mot de passe",
+      "escape": "si vous ne voulez pas faire cette action tapper \"escape\""
+    },
+    "delpassword": {
+      "choose_ligne": "veuillez mettre la ligne ou se trouve le mot de passe que vous souhaitez supprimer : ",
+      "del_password": "vous etes sur le point de supprimer le mot de passe :",
+      "del_password2": "? si vous êtes sur de supprimer ce mot de passe, veuillez appuyer sur 'y' si vous n etes pas sur, veuillez appuyer sur 'n' : ",
+      "password_has_del": "votre mot de passe en ligne",
+      "password_has_del2": " a ete supprime ",
+      "put_int": "merci de mettre un nombre et non des lettres ...",
+      "escape": "si vous ne voulez pas faire cette action tapper \"escape\""
+    },
+    "getpassword": {
+      "choose": "veuillez entrer le nom de votre mot de passe : ",
+      "all_password": "tous vos mots de passe sont :",
+      "choose_copy": "merci de mettre le nom de votre mot de passe que vous souhaitez copier : ",
+      "copyed": "a ete copie",
+      "escape": "si vous ne voulez pas faire cette action tapper \"escape\""
+    },
+    "loggepy": {
+      "name_passewod": "nom du nouveau mot de passe : ",
+      "no_space": "ah je suis desole mais ce nom de mot de passe n est pas valide il peut faire planter le programme (merci de ne pas mettre d espace)...",
+      "register": "votre mot de passe a ete enregistre sous le nom de : ",
+      "escape": "si vous ne voulez pas faire cette action tapper \"escape\""
+    },
+    "relaunch": {
+      "stop": "le programme a du s arreter pour le bon fonctionnement du programme.",
+      "escape": "retour au menu."
+    },
+    "repaired": {
+      "repair_succes": "votre fichier de mots de passe a été modifie avec succes"
+    },
+    "update": {
+      "looking": "nous recherchons s il y a une mise à jour disponible, merci de votre attention",
+      "new": "une nouvelle mise a jour est disponible.",
+      "current_version": "Vous etes actuellement sur la derniere version de loggepy",
+      "new_version": ", et la nouvelle version est la ",
+      "choose": "voulez-vous faire cette mise à jour ? (Yes/No)",
+      "ready_update": "la mise a jour est prete a etre installee",
+      "no_update": "la mise a jour n a pas ete effectuee",
+      "last_version": "vous avez deja la derniere version de loggepy"
+    }
+  }
+}
