@@ -35,7 +35,7 @@
     },
     "delpassword": {
       "choose_ligne": "ponga la línea donde se encuentra la contrasena que desea eliminar: ",
-      "del_password": "esta a punto de eliminar la contrasena:",
+      "del_password": "Esta a punto de eliminar la contraseña en la línea: ",
       "del_password2": "? Si esta seguro de eliminar esta contrasena, presione 'y'. Si no esta seguro, presione 'n': ",
       "password_has_del": "tu contraseña en la línea",
       "password_has_del2": "ha sido borrado",
@@ -70,7 +70,8 @@
       "choose": "quieres hacer esta actualizacion? (Yes/No)",
       "ready_update": "la actualizacipn esta lista para instalarse",
       "no_update": "no se realizo la actualizacion",
-      "last_version": "ya tienes la ultima version de loggepy"
+      "last_version": "ya tienes la ultima version de loggepy",
+      "download": "descargando archivos por favor sea paciente"
     }
   }
 }

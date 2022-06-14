@@ -3,11 +3,17 @@ import os
 import ctypes
 import locale
 import json
+from datetime import datetime
+import logging
 
-import keyboard
-import requests
-import zipfile
-from bs4 import BeautifulSoup
+try:
+    import keyboard
+    import requests
+    import zipfile
+    from bs4 import BeautifulSoup
+except:
+    from repaired import repair_libs
+    repair_libs()
 
 from relaunch import restart
 
@@ -28,6 +34,7 @@ try:
     data_texte = data["text"]
     data_text = data_texte["update"]
 except:
+    logging.error(f"{datetime.now()} ERROR: no language file corresponds to that of your computer, the language will be English")
     with open(f"Script/LANG/en_US.json", "r") as f:
         data = json.load(f)
     data_texte = data["text"]
@@ -58,6 +65,7 @@ def get_update():
             while True:
                 if keyboard.is_pressed("y"):
                     # télécharger la nouvelle vertion de loggepy grace a une requet html + la désipé
+                    print(data_text["download"])
                     r = requests.get(file_zip_url)
                     z = zipfile.ZipFile(io.BytesIO(r.content))
                     z.extractall("C:/Windows/Temp/loggepy_update")

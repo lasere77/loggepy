@@ -35,7 +35,7 @@
     },
     "delpassword": {
       "choose_ligne": "please put the line where the password you want to delete is located : ",
-      "del_password": "you are about to delete the password:",
+      "del_password": "you are about to remove the password at line: ",
       "del_password2": "? if you are sure remove this password, please press 'y' if you are not sure, please press 'n' : ",
       "password_has_del": "your password on the line",
       "password_has_del2": " has been deleted ",
@@ -70,7 +70,8 @@
       "choose": "do you want to do this update?(yes/no)",
       "ready_update": "the update is ready to install",
       "no_update": "the update was not performed",
-      "last_version": "you already have the latest version of loggepy"
+      "last_version": "you already have the latest version of loggepy",
+      "download": "downloading files please be patient"
     }
   }
 }
