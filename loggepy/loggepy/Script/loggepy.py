@@ -89,6 +89,10 @@ def passeword_generet():
         print(data_text['no_space'])
         time.sleep(2.5)
         restart()
+    if name_passewod == "":
+        print(data_text['put_arg'])
+        time.sleep(2.5)
+        restart()
     file.write(name_passewod + "=")
     for i in range(12):
         passeword = (hm[random.randint(0, len(hm) - 1)] + HM[random.randint(0, len(hm) - 1)])

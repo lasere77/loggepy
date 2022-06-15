@@ -31,7 +31,8 @@
       "put_arg": "ha I'm sorry but this password name is not validated it may crash the program (Please put arguments )...",
       "saved_passeword": "your password has been saved as",
       "saved_passeword2": "with as password",
-      "escape": "if you don't want to do this type \"escape\""
+      "escape": "if you don't want to do this type \"escape\"",
+      "no_equals": "ha i m sorry but this password name is not valid it can crash the program (please don t put an equal sign = )..."
     },
     "delpassword": {
       "choose_ligne": "please put the line where the password you want to delete is located : ",
@@ -53,7 +54,8 @@
       "name_passewod": "name of new passeword : ",
       "no_space": "ha I'm sorry but this password name is not validated it may crash the program (please do not put spaces or \"=\")...",
       "register": "your passwords has been registered under the name of : ",
-      "escape": "if you don't want to do this type \"escape\""
+      "escape": "if you don't want to do this type \"escape\"",
+      "put_arg": "ah I'm sorry but this password name is not valid it can crash the program (please put arguments)..."
     },
     "relaunch": {
       "stop": "the program had to stop for the proper functioning of the programe. ",

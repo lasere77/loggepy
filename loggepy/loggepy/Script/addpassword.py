@@ -37,9 +37,6 @@ def add_password():
     logging.info(f'{datetime.now()} INFO: the user called the function "add_passeword"')
     choose_name = input(data_text['choose_name'])
     print(data_text["escape"])
-    choose_addPassword = input(f"{data_text['choose_addpassword']} {choose_name} : ")
-    load_dotenv(dotenv_path="C:\ProgramData\passworld_loggepy/passewords")
-    file = open("C:\ProgramData\passworld_loggepy\passewords", "a+")
     if choose_name == "escape":
         restart()
     if " " in choose_name or "=" in choose_name:
@@ -50,6 +47,19 @@ def add_password():
         print(data_text["put_arg"])
         time.sleep(2.5)
         restart()
+    choose_addPassword = input(f"{data_text['choose_addpassword']} {choose_name} : ")
+    if choose_addPassword == "escape":
+        restart()
+    if "=" in choose_addPassword or choose_addPassword == " ":
+        print(data_text["no_equals"])
+        time.sleep(2.5)
+        restart()
+    if choose_addPassword == "":
+        print(data_text["put_arg"])
+        time.sleep(2.5)
+        restart()
+    load_dotenv(dotenv_path="C:\ProgramData\passworld_loggepy/passewords")
+    file = open("C:\ProgramData\passworld_loggepy\passewords", "a+")
     file.write(choose_name + "=" + choose_addPassword)
     file.write("\n")
     print(f"{data_text['saved_passeword']} {choose_name} {data_text['saved_passeword2']} {choose_addPassword} .")

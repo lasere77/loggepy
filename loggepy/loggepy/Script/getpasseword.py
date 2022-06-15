@@ -54,6 +54,9 @@ def copy():
     choose = input(data_text['choose_copy'])
     if choose == "escape":
         restart()
-    load_dotenv(dotenv_path="C:\ProgramData\passworld_loggepy/passewords")
-    print(os.getenv(choose) , data_text['copyed'])
-    pc.copy(os.getenv(choose))
+    try:
+        load_dotenv(dotenv_path="C:\ProgramData\passworld_loggepy/passewords")
+        print(os.getenv(choose) , data_text['copyed'])
+        pc.copy(os.getenv(choose))
+    except:
+        restart()

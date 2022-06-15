@@ -31,12 +31,13 @@
       "put_arg": "ha je suis desole mais ce nom de mot de passe n est pas valide il peut faire planter le programme (veuillez mettre des arguments)...",
       "saved_passeword": "votre mot de passe a ete enregistre sous",
       "saved_passeword2": "avec comme mot de passe",
-      "escape": "si vous ne voulez pas faire cette action tapper \"escape\""
+      "escape": "si vous ne voulez pas faire cette action tapper \"escape\"",
+      "no_equals": "ha je suis desole mais ce nom de mot de passe n est pas valide il peut faire planter le programme (veuillez ne pas mettre de signe egal = )..."
     },
     "delpassword": {
       "choose_ligne": "veuillez mettre la ligne ou se trouve le mot de passe que vous souhaitez supprimer : ",
       "del_password": "vous etes sur le point de supprimer le mot de passe a la ligne: ",
-      "del_password2": "? si vous êtes sur de supprimer ce mot de passe, veuillez appuyer sur 'y' si vous n etes pas sur, veuillez appuyer sur 'n' : ",
+      "del_password2": "? si vous etes sur de supprimer ce mot de passe, veuillez appuyer sur 'y' si vous n etes pas sur, veuillez appuyer sur 'n' : ",
       "password_has_del": "votre mot de passe en ligne",
       "password_has_del2": " a ete supprime ",
       "put_int": "merci de mettre un nombre et non des lettres ...",
@@ -53,7 +54,8 @@
       "name_passewod": "nom du nouveau mot de passe : ",
       "no_space": "ah je suis desole mais ce nom de mot de passe n est pas valide il peut faire planter le programme (merci de ne pas mettre d espace)...",
       "register": "votre mot de passe a ete enregistre sous le nom de : ",
-      "escape": "si vous ne voulez pas faire cette action tapper \"escape\""
+      "escape": "si vous ne voulez pas faire cette action tapper \"escape\"",
+      "put_arg": "ah je suis desole mais ce nom de mot de passe n est pas valide il peut faire planter le programme (merci de mettre des argument)..."
     },
     "relaunch": {
       "stop": "le programme a du s arreter pour le bon fonctionnement du programme.",

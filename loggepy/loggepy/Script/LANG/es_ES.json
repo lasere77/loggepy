@@ -31,7 +31,8 @@
       "put_arg": "ja, lo siento, pero este nombre de contrasena no esta validado, puede bloquear el programa (Por favor, ponga argumentos)...",
       "saved_passeword": "tu contraseña ha sido guardada como",
       "saved_passeword2": "con como contrasena",
-      "escape": "si no quieres hacer esto escribe \"escape\""
+      "escape": "si no quieres hacer esto escribe \"escape\"",
+      "no_equals": "ja, lo siento, pero este nombre de contrasena no es valido, puede bloquear el programa (por favor, no ponga un signo igual =)..."
     },
     "delpassword": {
       "choose_ligne": "ponga la línea donde se encuentra la contrasena que desea eliminar: ",
@@ -53,7 +54,8 @@
       "name_passewod": "nombre de la nueva contrasena: ",
       "no_space": "ja, lo siento, pero este nombre de contrasena no esta validado, puede bloquear el programa (por favor, no ponga espacios)...",
       "register": "sus contrasenas han sido registradas a nombre de: ",
-      "escape": "si no quieres hacer esto escribe \"escape\""
+      "escape": "si no quieres hacer esto escribe \"escape\"",
+      "put_arg": "ah, lo siento, pero este nombre de contrasena no es valido, puede bloquear el programa (por favor, ponga argumentos)..."
     },
     "relaunch": {
       "stop": "el programa tuvo que detenerse para el correcto funcionamiento del programa.",
