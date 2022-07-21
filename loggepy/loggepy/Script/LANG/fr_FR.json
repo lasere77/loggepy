@@ -89,7 +89,9 @@
       "download": "telechargement des fichiers merci de patiente",
       "title": "une nouvelle mise a jour!",
       "warning": "assurez vous d etre connecte a internet.",
-      "confirmed": "en appuyant sur ce bouton vous acceptez les nouvelles implementations de cette mise a jour."
+      "confirmed": "en appuyant sur ce bouton vous acceptez les nouvelles implementations de cette mise a jour.",
+      "error": "vous ne pouvez pas mettre a niveaux cette version de loggepy merci de telecharge la derniere version",
+      "here": "clicker ici"
     }
   }
 }

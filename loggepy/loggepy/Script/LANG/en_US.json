@@ -89,7 +89,9 @@
       "download": "downloading files please be patient",
       "title": "a new update",
       "warning": "make sure you are connected to the internet.",
-      "confirmed": "by pressing this button you accept the new implementations of this update"
+      "confirmed": "by pressing this button you accept the new implementations of this update",
+      "error": "you cannot upgrade this version of loggepy please download the latest version",
+      "here": "click here"
     }
   }
 }

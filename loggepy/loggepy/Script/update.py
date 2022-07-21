@@ -6,6 +6,7 @@ import json
 from datetime import datetime
 import logging
 from tkinter import Tk, Frame, Label, messagebox, Button
+import webbrowser
 
 try:
     import keyboard
@@ -46,6 +47,30 @@ get_name = os.getlogin()
 point = "."
 URL = "https://github.com/lasere77/loggepy/releases"
 
+def gui_error_update():
+    gui_error_update = Tk()
+    gui_error_update.title("update error")
+    gui_error_update.iconbitmap("Script/img/index.ico")
+    gui_error_update.config(bg="gray17")
+    width = gui_error_update.winfo_screenwidth()
+    height = gui_error_update.winfo_screenheight()
+    gui_error_update.geometry("%dx%d" % (width, height))
+
+    frame = Frame(gui_error_update, bg="gray17")
+    frame.pack(expand="YES")
+
+    rule = Label(frame, text=data_text['error'], bg="gray17", fg="#083def")
+    rule.pack()
+
+    btn = Button(frame, text=data_text['here'], bg="gray17", fg="#083def", command=open_github)
+    btn.pack()
+
+    gui_error_update.mainloop()
+
+def open_github():
+    webbrowser.open_new("https://github.com/lasere77/loggepy/releases")
+
+
 def gui_get_update():
     gui_getupdate = Tk()
     gui_getupdate.title("update")
@@ -73,6 +98,7 @@ def get_update(gui_getupdate, frame):
         tag = soup.find(name="h1")
         tag.text.replace(".", ",")
         tag = tuple(tag.text)
+        print(tag)
         get_important = int(tag[0])
         get_major = int(tag[2])
         get_minor = int(tag[4])
@@ -81,6 +107,9 @@ def get_update(gui_getupdate, frame):
 
         if get_important > IMPORTANT or get_major > MAJOR or get_minor > MINOR:
             print(f"{data_text['new']}\n{data_text['current_version']} {IMPORTANT}{point}{MAJOR}{point}{MINOR} {data_text['new_version']} {get_important}{point}{get_major}{point}{get_minor}\n{data_text['choose']}")
+            desciption = soup.find(name="p")
+            if "$" in str(desciption):
+                gui_error_update()
             def update():
                 if messagebox.askyesno(data_text["title"], f"{data_text['new']}{data_text['current_version']} {IMPORTANT}{point}{MAJOR}{point}{MINOR}\n{data_text['new_version']} {get_important}{point}{get_major}{point}{get_minor}\n{data_text['choose']}"):
                     # télécharger la nouvelle vertion de loggepy grace a une requet html + la désipé
@@ -90,14 +119,17 @@ def get_update(gui_getupdate, frame):
                     z.extractall("C:/Windows/Temp/loggepy_update")
                     print(data_text['ready_update'])
                     #executer l'asssembleur
-                    path = f'C:/Users/{get_name}/AppData/Roaming/loggepy/update.bat'
-                    os.execl(path, path)
+                    try:
+                        path = f'C:/Users/{get_name}/AppData/Roaming/loggepy/update.bat'
+                        os.execl(path, path)
+                    except:
+                        logging.error(f"{datetime.now()} ERROR: you can no longer update please go to: https://github.com/lasere77/loggepy/releases ")
+                        print("ERROR: you can no longer update please go to: https://github.com/lasere77/loggepy/releases")
+                        gui_error_update()
                     destroy_gui_get_update(gui_getupdate)
                 else:
                     print(data_text['no_update'])
                     destroy_gui_get_update(gui_getupdate)
-
-            desciption = soup.find(name="p")
             print(desciption)
             info = Label(frame, text=str(desciption), bg="gray17", fg="#083def")
             info.pack()
