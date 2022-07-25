@@ -7,6 +7,7 @@ from datetime import datetime
 import logging
 from tkinter import Tk, Frame, Label, messagebox, Button
 import webbrowser
+import functools
 
 try:
     import keyboard
@@ -22,9 +23,9 @@ from guimanager import destroy_gui_get_update
 with open(f"Script/data/data.json", "r") as file:
     data = json.load(file)
 
-IMPORTANT = int(data["IMPORTANT"])
 MAJOR = int(data["MAJOR"])
 MINOR = int(data["MINOR"])
+PATCH = int(data["PATCH"])
 
 windll = ctypes.windll.kernel32
 windll.GetUserDefaultUILanguage()
@@ -99,19 +100,22 @@ def get_update(gui_getupdate, frame):
         tag.text.replace(".", ",")
         tag = tuple(tag.text)
         print(tag)
-        get_important = int(tag[0])
-        get_major = int(tag[2])
-        get_minor = int(tag[4])
+        get_major = int(tag[0])
+        get_minor_tuple = int(tag[2]), int(tag[3])
+        get_minor = functools.reduce(lambda sub, ele: sub * 10 + ele, get_minor_tuple)
+        print(type(get_minor))
+        print(get_minor)
+        get_patch = int(tag[5])
 
-        file_zip_url = f"https://github.com/lasere77/loggepy/releases/download/{get_important}{point}{get_major}{point}{get_minor}/loggepy.{get_important}{point}{get_major}{point}{get_minor}.zip"
+        file_zip_url = f"https://github.com/lasere77/loggepy/releases/download/{get_major}{point}{get_minor}{point}{get_patch}/loggepy.{get_major}{point}{get_minor}{point}{get_patch}.zip"
 
-        if get_important > IMPORTANT or get_major > MAJOR or get_minor > MINOR:
-            print(f"{data_text['new']}\n{data_text['current_version']} {IMPORTANT}{point}{MAJOR}{point}{MINOR} {data_text['new_version']} {get_important}{point}{get_major}{point}{get_minor}\n{data_text['choose']}")
+        if get_major > MAJOR or get_minor > MINOR or get_patch > PATCH:
+            print(f"{data_text['new']}\n{data_text['current_version']} {MAJOR}{point}{MINOR}{point}{PATCH} {data_text['new_version']} {get_major}{point}{get_minor}{point}{get_patch}\n{data_text['choose']}")
             desciption = soup.find(name="p")
             if "$" in str(desciption):
                 gui_error_update()
             def update():
-                if messagebox.askyesno(data_text["title"], f"{data_text['new']}{data_text['current_version']} {IMPORTANT}{point}{MAJOR}{point}{MINOR}\n{data_text['new_version']} {get_important}{point}{get_major}{point}{get_minor}\n{data_text['choose']}"):
+                if messagebox.askyesno(data_text["title"], f"{data_text['new']}{data_text['current_version']} {MAJOR}{point}{MINOR}{point}{PATCH}\n{data_text['new_version']} {get_major}{point}{get_minor}{point}{get_patch}\n{data_text['choose']}"):
                     # télécharger la nouvelle vertion de loggepy grace a une requet html + la désipé
                     print(data_text["download"])
                     r = requests.get(file_zip_url)
@@ -135,7 +139,7 @@ def get_update(gui_getupdate, frame):
             info.pack()
             btn = Button(frame, text=data_text["confirmed"], bg="gray17", fg="#083def", command=update)
             btn.pack()
-        elif get_important == IMPORTANT or get_major == MAJOR or get_minor == MINOR:
+        elif get_major == get_major or get_minor == MINOR or get_patch == PATCH:
             last = Label(frame, text=data_text['last_version'], bg="gray17", fg="#083def")
             last.pack()
             print(data_text['last_version'])
