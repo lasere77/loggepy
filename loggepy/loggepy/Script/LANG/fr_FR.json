@@ -65,7 +65,8 @@
       "check_main_password": "votre mot de passe est bien (yes/no): ",
       "try_again": "ok... recommençons",
       "warning": "le nom du mot de passe et le mot de passe ne doivent pas contenir: \nd espace ni le symbole egal \"=\" \net ne doit pas etre vide.",
-      "confirmed": "cliquez ici pour confirme confirme"
+      "confirmed": "cliquez ici pour confirme confirme",
+      "choose_number_characters": "merci de mettre la longueur de votre mot de passe\n(il est conseiller de montre 24)."
     },
     "relaunch": {
       "stop": "le programme a du s arreter pour le bon fonctionnement du programme.",

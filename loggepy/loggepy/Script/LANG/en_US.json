@@ -65,7 +65,8 @@
       "check_main_password": "your password is good (yes/no): ",
       "try_again": "ok... let's start again",
       "warning": "the password name and password must not contain:\n spaces or the equal symbol \"=\" \nand must not be empty.",
-      "confirmed": "click here for confirmed confirmed"
+      "confirmed": "click here for confirmed confirmed",
+      "choose_number_characters": "please put the length of your password\n(it is advise watch 24)."
     },
     "relaunch": {
       "stop": "the program had to stop for the proper functioning of the programe. ",

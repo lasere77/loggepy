@@ -76,8 +76,10 @@ except:
 
 print(Fade.Vertical(Colors.blue_to_green, title))
 loggepy_commands = f'\n{data_big["b_generate"]}\n{data_big["b_read"]}\n{data_big["b_creata"]}\n{data_big["b_exit"]}\n{data_big["b_see"]}\n{data_big["b_copy"]}\n{data_big["b_backup"]} \n{data_big["b_delete"]}\n{data_big["b_update"]}'
-hm = list(string.ascii_lowercase + "\"" + "@" + "<")
-HM = list(string.ascii_uppercase + "/" + "*" + ">" + "~")
+hm = list(string.ascii_lowercase)
+HM = list(string.ascii_uppercase)
+number = list("1" + "2" + "3" + "4" + "5" + "6" + "7" + "8" + "9")
+special_character = list("\"" + "@" + "<" + "/" + "*" + ">" + "~" + "!" + "?" + "{" + "}")
 #print(f'{data_litel["generate"]}\n{data_litel["read"]}\n{data_litel["creata"]}\n{data_litel["exit"]}\n{data_litel["see"]}\n{data_litel["copy"]}\n{data_litel["backup"]} \n{data_litel["delete"]}\n{data_litel["info"]} \n{data_litel["update"]}')
 
 def gui_passeword_generet():
@@ -99,10 +101,17 @@ def gui_passeword_generet():
     put_name_password = Entry(frame, bg="gray17", fg="#083def")
     put_name_password.pack()
 
+    choose_number_characters = Label(frame, text=data_text['choose_number_characters'], bg="gray17", fg="#083def")
+    choose_number_characters.pack()
+
+    put_number_characters = Entry(frame, bg="gray17", fg="#083def")
+    put_number_characters.pack()
+
     def get_name_password_put():
         name_password = put_name_password.get()
+        number_characters = put_number_characters.get()
         print(name_password)
-        passeword_generet(name_password, gui_passewordgeneret)
+        passeword_generet(name_password, number_characters, gui_passewordgeneret)
 
     btn_confirm_password = Button(frame, text=data_text["confirmed"], bg="gray17", fg="#083def", command=get_name_password_put)
     btn_confirm_password.pack()
@@ -110,8 +119,9 @@ def gui_passeword_generet():
     gui_passewordgeneret.mainloop()
 
 
-def passeword_generet(name_password, gui_passewordgeneret):
+def passeword_generet(name_password, number_characters, gui_passewordgeneret):
     name_password = str(name_password)
+    number_characters = int(number_characters)
     file = open("C:\ProgramData\passworld_loggepy\passwords", "a+", encoding="UTF-8")
     logging.info(f"{datetime.now()} INFO: the user called the function \"passeword_generet\"")
     if " " in name_password or "=" in name_password:
@@ -121,9 +131,18 @@ def passeword_generet(name_password, gui_passewordgeneret):
         print(data_text['put_arg'])
         time.sleep(2.5)
     file.write(name_password + "=")
-    for i in range(12):
-        passeword = (hm[random.randint(0, len(hm) - 1)] + HM[random.randint(0, len(hm) - 1)])
-        file.write(str(passeword))
+    for i in range(number_characters):
+        choose_list = random.randint(0, 3)
+        print(choose_list)
+        if choose_list == 0:
+            password = hm[random.randint(0, len(hm) - 1)]
+        elif choose_list == 1:
+            password = HM[random.randint(0, len(HM) - 1)]
+        elif choose_list == 2:
+            password = number[random.randint(0, len(number) - 1)]
+        elif choose_list == 3:
+            password = special_character[random.randint(0, len(special_character) - 1)]
+        file.write(str(password))
     file.write("\n")
     print(data_text['register'], name_password)
     file.close()

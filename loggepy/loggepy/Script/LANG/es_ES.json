@@ -65,7 +65,9 @@
       "check_main_password": "tu contrasena es buena(yes/no): ",
       "try_again": "bien... comencemos de nuevo",
       "warning": "el nombre de la contrasena y la contrasena no deben contener:\n espacios o el símbolo igual \"=\" \ny no deben estar vacios.",
-      "confirmed": "haga clic aqui para confirmar confirmado"
+      "confirmed": "haga clic aqui para confirmar confirmado",
+      "choose_number_characters": "Por favor, ponga la longitud de su contrasena\n(se recomienda ver 24)."
+
     },
     "relaunch": {
       "stop": "el programa tuvo que detenerse para el correcto funcionamiento del programa.",
