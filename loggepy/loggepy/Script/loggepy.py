@@ -257,7 +257,7 @@ Label(navgui, font="Bahnschrift 15", bg=color["blue"], fg="black", height=2, wid
 # set y-coordinate of Navbar widgets:
 y = 80
 # option in the navbar:
-options = ["generet passeword", "get passeword", "add password", "get all passeword", "copy", "repair", "Help", "del passeword", "get update", "exit", "uninstall"]
+options = ["generete password", "get password", "add password", "get all password", "copy", "repair", "Help", "del password", "get update", "exit", "uninstall"]
 commands = [gui_passeword_generet, gui_getpassword, gui_add_password, gui_getallpassword, gui_copy_password, repair, gui_loggepy_help, gui_del_password, gui_get_update, exit, gui_uninstall]
 # Navbar Option Buttons:
 for i in range(len(options)):
